@@ -9,10 +9,55 @@ const jobTypes = {
   programmer: 'Any Ship!'
 };
 
-// Your code will go here
+
+class CrewMember {
+  constructor(name, job, specialSkill, ship) {
+    this.name = name
+    this.job = job
+    this.specialSkill = specialSkill
+    this.ship = ship
+  }
+
+  enterShip(ship) {
+    this.ship = ship
+    this.ship.crew.push({
+      name: this.name,
+      job: this.job,
+      specialSkill: this.specialSkill
+    })
+    // console.log(this.ship.crew)
+    // console.log("This", this)
+    // console.log("---here---", ship)
+  }
+}
+
+class Ship {
+  constructor(name, type, ability) {
+    this.name = name
+    this.type = type
+    this.ability = ability
+    this.crew = []
+  }
 
 
+  missionStatement() {
+    if(this.crew.length <= 0) {
+      return "Can't perform a mission yet."
+    } else {
+      console.log(this.ability, "-------ability----------")
+      return this.ability
+    }
+  }
+}
 
+const Jarrod = new CrewMember("Jarrod", "Programmer", "Counting Numbers")
+const Luna = new Ship("Luna", "Battleship", "Destroys ships") 
+
+console.log(Jarrod, "-------Jarrod--------")
+Jarrod.enterShip(Luna)
+console.log(Luna, "----------Luna--------------")
+console.log(Jarrod, "entered ship")
+Luna.missionStatement()
 
 
 
